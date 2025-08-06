@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linkek - Linkfluencer Dashboard</title>
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <i class="fas fa-handshake"></i> 
+                    <span>Linkfluencer</span>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <div class="user-info">
+                    <span class="user-type">Influencer</span>
+                    <span class="user-name">Kiss Anna</span>
+                    <div class="premium-badge">PREMIUM</div>
+                </div>
+                <a href="./index.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i></a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="dashboard-main">
+        <div class="container">
+            <section class="links-section">
+                <h1>Linkek kezelése</h1>
+                <p class="subtitle">Itt találod az aktív és lejárt kampányaidhoz tartozó linkeket, valamint a kattintási statisztikákat.</p>
+                
+                <div class="links-card active-links">
+                    <div class="card-header">
+                        <h2><i class="fas fa-link"></i> Aktív Linkek</h2>
+                    </div>
+                    <div class="link-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Cég / Partner</th>
+                                    <th>Termék</th>
+                                    <th>Kattintások</th>
+                                    <th>Link</th>
+                                    <th>Műveletek</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="company-name">TechZrt</span></td>
+                                    <td>Okostelefon Kampány</td>
+                                    <td><span class="clicks">1,247</span></td>
+                                    <td>
+                                        <a href="#" class="link-url" target="_blank">linkfluencer.hu/ref/techzrt_anna</a>
+                                    </td>
+                                    <td>
+                                        <button class="action-btn copy-btn" data-link="linkfluencer.hu/ref/techzrt_anna" aria-label="Link másolása">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="company-name">StyleShop</span></td>
+                                    <td>Őszi Divat Kollekció</td>
+                                    <td><span class="clicks">892</span></td>
+                                    <td>
+                                        <a href="#" class="link-url" target="_blank">linkfluencer.hu/ref/styleshop_anna_osz</a>
+                                    </td>
+                                    <td>
+                                        <button class="action-btn copy-btn" data-link="linkfluencer.hu/ref/styleshop_anna_osz" aria-label="Link másolása">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="links-card expired-links">
+                    <div class="card-header">
+                        <h2><i class="fas fa-history"></i> Lejárt Linkek</h2>
+                    </div>
+                    <div class="link-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Cég / Partner</th>
+                                    <th>Termék</th>
+                                    <th>Kattintások</th>
+                                    <th>Link</th>
+                                    <th>Státusz</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="expired">
+                                    <td><span class="company-name">HealthyLife</span></td>
+                                    <td>Vitamin akció</td>
+                                    <td><span class="clicks">3,120</span></td>
+                                    <td>
+                                        <a href="#" class="link-url" target="_blank">linkfluencer.hu/ref/healthylife_anna</a>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge expired-badge">Lejárt</span>
+                                    </td>
+                                </tr>
+                                <tr class="expired">
+                                    <td><span class="company-name">HomeDecor Kft.</span></td>
+                                    <td>Téli Lakásdekorációk</td>
+                                    <td><span class="clicks">543</span></td>
+                                    <td>
+                                        <a href="#" class="link-url" target="_blank">linkfluencer.hu/ref/homedecor_anna_tel</a>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge expired-badge">Lejárt</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // Link másolása gomb funkcionalitás
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const link = button.getAttribute('data-link');
+                navigator.clipboard.writeText(link).then(() => {
+                    const originalIcon = button.innerHTML;
+                    button.innerHTML = '<i class="fas fa-check"></i>';
+                    button.classList.add('copied');
+                    setTimeout(() => {
+                        button.innerHTML = originalIcon;
+                        button.classList.remove('copied');
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Hiba a link másolásakor: ', err);
+                });
+            });
+        });
+
+        // Dashboard menü navigáció
+        document.querySelector('.action-buttons .action-btn:nth-child(1)').addEventListener('click', () => {
+            window.location.href = './linkek.html';
+        });
+    </script>
+</body>
+</html>

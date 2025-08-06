@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beállítások - Linkfluencer</title>
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <link rel="stylesheet" href="./css/settings.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <i class="fas fa-handshake"></i> 
+                    <span>Linkfluencer</span>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <div class="user-info">
+                    <span class="user-type">Influencer</span>
+                    <span class="user-name">Kiss Anna</span>
+                    <div class="premium-badge">PREMIUM</div>
+                </div>
+                <button class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="settings-main">
+        <div class="container">
+            <div class="settings-header">
+                <a href="dashboard.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i>
+                    Vissza a dashboard-hoz
+                </a>
+                <h1>Beállítások</h1>
+                <p>Kezeld a fiókod és profil információidat</p>
+            </div>
+
+            <div class="settings-container">
+                <!-- Settings Navigation -->
+                <nav class="settings-nav">
+                    <button class="settings-tab active" data-tab="profile">
+                        <i class="fas fa-user-circle"></i>
+                        Profil
+                    </button>
+                    <button class="settings-tab" data-tab="social">
+                        <i class="fas fa-share-alt"></i>
+                        Social Media
+                    </button>
+                    <button class="settings-tab" data-tab="account">
+                        <i class="fas fa-cog"></i>
+                        Fiók
+                    </button>
+                    <button class="settings-tab" data-tab="billing">
+                        <i class="fas fa-credit-card"></i>
+                        Számlázás
+                    </button>
+                    <button class="settings-tab" data-tab="notifications">
+                        <i class="fas fa-bell"></i>
+                        Értesítések
+                    </button>
+                </nav>
+
+                <!-- Settings Content -->
+                <div class="settings-content">
+                    <!-- Profile Tab -->
+                    <div class="settings-panel active" id="profile-panel">
+                        <div class="panel-header">
+                            <h2>Profil beállítások</h2>
+                            <p>Itt szerkesztheted a nyilvános profil információidat</p>
+                        </div>
+
+                        <form class="settings-form">
+                            <!-- Profile Picture Section -->
+                            <div class="form-section">
+                                <h3>Profilkép</h3>
+                                <div class="profile-picture-section">
+                                    <div class="current-picture">
+                                        <img id="profile-preview" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&auto=format&fit=crop" alt="Jelenlegi profilkép">
+                                    </div>
+                                    <div class="picture-controls">
+                                        <input type="file" id="profile-upload" accept="image/*" style="display: none;">
+                                        <button type="button" class="btn btn-secondary" onclick="document.getElementById('profile-upload').click()">
+                                            <i class="fas fa-camera"></i>
+                                            Új kép feltöltése
+                                        </button>
+                                        <button type="button" class="btn btn-danger-outline">
+                                            <i class="fas fa-trash"></i>
+                                            Törlés
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Basic Information -->
+                            <div class="form-section">
+                                <h3>Alapinformációk</h3>
+                                <div class="form-grid">
+                                    <div class="input-group">
+                                        <label for="display-name">Megjelenítendő név</label>
+                                        <input type="text" id="display-name" value="Kiss Anna" required>
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="username">Felhasználónév</label>
+                                        <input type="text" id="username" value="kiss_anna_official" required>
+                                        <small>Ez lesz a profil URL-ed: linkfluencer.hu/@kiss_anna_official</small>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="bio">Bemutatkozás</label>
+                                    <textarea id="bio" rows="4" placeholder="Írj magadról néhány szót...">Lifestyle és beauty tartalom készítő. Imádom megosztani a legújabb trendeket és termékeket követőimmel! 🌟</textarea>
+                                    <small>Karakterszám: <span id="bio-count">144</span>/500</small>
+                                </div>
+                            </div>
+
+                            <!-- Categories and Interests -->
+                            <div class="form-section">
+                                <h3>Kategóriák és érdeklődési területek</h3>
+                                <div class="category-selector">
+                                    <div class="category-grid">
+                                        <label class="category-item">
+                                            <input type="checkbox" name="categories" value="beauty" checked>
+                                            <span class="category-label">
+                                                <i class="fas fa-heart"></i>
+                                                Szépség
+                                            </span>
+                                        </label>
+                                        <label class="category-item">
+                                            <input type="checkbox" name="categories" value="lifestyle" checked>
+                                            <span class="category-label">
+                                                <i class="fas fa-home"></i>
+                                                Lifestyle
+                                            </span>
+                                        </label>
+                                        <label class="category-item">
+                                            <input type="checkbox" name="categories" value="fashion">
+                                            <span class="category-label">
+                                                <i class="fas fa-tshirt"></i>
+                                                Divat
+                                            </span>
+                                        </label>
+                                        <label class="category-item">
+                                            <input type="checkbox" name="categories" value="food">
+                                            <span class="category-label">
+                                                <i class="fas fa-utensils"></i>
+                                                Étel & Ital
+                                            </span>
+                                        </label>
+                                        <label class="category-item">
+                                            <input type="checkbox" name="categories" value="travel">
+                                            <span class="category-label">
+                                                <i class="fas fa-plane"></i>
+                                                Utazás
+                                            </span>
+                                        </label>
+                                        <label class="category-item">
+                                            <input type="checkbox" name="categories" value="fitness">
+                                            <span class="category-label">
+                                                <i class="fas fa-dumbbell"></i>
+                                                Fitness
+                                            </span>
+                                        </label>
+                                        <label class="category-item">
+                                            <input type="checkbox" name="categories" value="tech">
+                                            <span class="category-label">
+                                                <i class="fas fa-laptop"></i>
+                                                Technológia
+                                            </span>
+                                        </label>
+                                        <label class="category-item">
+                                            <input type="checkbox" name="categories" value="gaming">
+                                            <span class="category-label">
+                                                <i class="fas fa-gamepad"></i>
+                                                Gaming
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Demographics -->
+                            <div class="form-section">
+                                <h3>Demográfiai adatok</h3>
+                                <div class="form-grid">
+                                    <div class="input-group">
+                                        <label for="age-range">Korosztály</label>
+                                        <select id="age-range">
+                                            <option value="">Válassz...</option>
+                                            <option value="16-20">16-20 év</option>
+                                            <option value="21-25" selected>21-25 év</option>
+                                            <option value="26-30">26-30 év</option>
+                                            <option value="31-35">31-35 év</option>
+                                            <option value="36-40">36-40 év</option>
+                                            <option value="40+">40+ év</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="location">Helyszín</label>
+                                        <input type="text" id="location" value="Budapest, Magyarország">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="languages">Nyelvek</label>
+                                    <div class="tag-input">
+                                        <div class="tags">
+                                            <span class="tag">Magyar <i class="fas fa-times"></i></span>
+                                            <span class="tag">Angol <i class="fas fa-times"></i></span>
+                                        </div>
+                                        <input type="text" placeholder="Adj hozzá nyelvet...">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary">Mégsem</button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i>
+                                    Mentés
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Social Media Tab -->
+                    <div class="settings-panel" id="social-panel">
+                        <div class="panel-header">
+                            <h2>Social Media fiókok</h2>
+                            <p>Csatold a social media fiókjaidat a követőszámok automatikus frissítéséhez</p>
+                        </div>
+
+                        <form class="settings-form">
+                            <!-- Instagram -->
+                            <div class="form-section">
+                                <div class="social-platform">
+                                    <div class="platform-header">
+                                        <div class="platform-info">
+                                            <i class="fab fa-instagram" style="color: #E4405F;"></i>
+                                            <h3>Instagram</h3>
+                                            <span class="connection-status connected">Csatlakoztatva</span>
+                                        </div>
+                                        <button type="button" class="btn btn-danger-outline disconnect-btn">
+                                            Szétkapcsolás
+                                        </button>
+                                    </div>
+                                    <div class="platform-details">
+                                        <div class="input-group">
+                                            <label for="instagram-handle">Instagram felhasználónév</label>
+                                            <div class="input-with-prefix">
+                                                <span class="input-prefix">@</span>
+                                                <input type="text" id="instagram-handle" value="kiss.anna.official" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="social-stats">
+                                            <div class="stat-item">
+                                                <span class="stat-label">Követők</span>
+                                                <span class="stat-value">89,247</span>
+                                            </div>
+                                            <div class="stat-item">
+                                                <span class="stat-label">Átlag engagement</span>
+                                                <span class="stat-value">4.2%</span>
+                                            </div>
+                                            <div class="stat-item">
+                                                <span class="stat-label">Utolsó frissítés</span>
+                                                <span class="stat-value">2 órája</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- TikTok -->
+                            <div class="form-section">
+                                <div class="social-platform">
+                                    <div class="platform-header">
+                                        <div class="platform-info">
+                                            <i class="fab fa-tiktok" style="color: #000000;"></i>
+                                            <h3>TikTok</h3>
+                                            <span class="connection-status connected">Csatlakoztatva</span>
+                                        </div>
+                                        <button type="button" class="btn btn-danger-outline disconnect-btn">
+                                            Szétkapcsolás
+                                        </button>
+                                    </div>
+                                    <div class="platform-details">
+                                        <div class="input-group">
+                                            <label for="tiktok-handle">TikTok felhasználónév</label>
+                                            <div class="input-with-prefix">
+                                                <span class="input-prefix">@</span>
+                                                <input type="text" id="tiktok-handle" value="kissanna_beauty" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="social-stats">
+                                            <div class="stat-item">
+                                                <span class="stat-label">Követők</span>
+                                                <span class="stat-value">156,892</span>
+                                            </div>
+                                            <div class="stat-item">
+                                                <span class="stat-label">Átlag megtekintés</span>
+                                                <span class="stat-value">12.5K</span>
+                                            </div>
+                                            <div class="stat-item">
+                                                <span class="stat-label">Utolsó frissítés</span>
+                                                <span class="stat-value">1 órája</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Facebook -->
+                            <div class="form-section">
+                                <div class="social-platform">
+                                    <div class="platform-header">
+                                        <div class="platform-info">
+                                            <i class="fab fa-facebook" style="color: #1877F2;"></i>
+                                            <h3>Facebook</h3>
+                                            <span class="connection-status not-connected">Nincs csatlakoztatva</span>
+                                        </div>
+                                        <button type="button" class="btn btn-primary connect-btn">
+                                            <i class="fas fa-link"></i>
+                                            Csatlakoztatás
+                                        </button>
+                                    </div>
+                                    <div class="platform-details" style="display: none;">
+                                        <div class="input-group">
+                                            <label for="facebook-handle">Facebook oldal</label>
+                                            <input type="text" id="facebook-handle" placeholder="Facebook oldal URL-je">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- YouTube -->
+                            <div class="form-section">
+                                <div class="social-platform">
+                                    <div class="platform-header">
+                                        <div class="platform-info">
+                                            <i class="fab fa-youtube" style="color: #FF0000;"></i>
+                                            <h3>YouTube</h3>
+                                            <span class="connection-status not-connected">Nincs csatlakoztatva</span>
+                                        </div>
+                                        <button type="button" class="btn btn-primary connect-btn">
+                                            <i class="fas fa-link"></i>
+                                            Csatlakoztatás
+                                        </button>
+                                    </div>
+                                    <div class="platform-details" style="display: none;">
+                                        <div class="input-group">
+                                            <label for="youtube-handle">YouTube csatorna</label>
+                                            <input type="text" id="youtube-handle" placeholder="YouTube csatorna URL-je">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary">Mégsem</button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i>
+                                    Mentés
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Account Tab -->
+                    <div class="settings-panel" id="account-panel">
+                        <div class="panel-header">
+                            <h2>Fiókbeállítások</h2>
+                            <p>Kezeld az email címed, jelszavad és egyéb fiókadatokat</p>
+                        </div>
+
+                        <form class="settings-form">
+                            <!-- Email Settings -->
+                            <div class="form-section">
+                                <h3>Email cím</h3>
+                                <div class="input-group">
+                                    <label for="email">Jelenlegi email cím</label>
+                                    <div class="input-with-action">
+                                        <input type="email" id="email" value="kiss.anna@example.com" readonly>
+                                        <button type="button" class="btn btn-secondary" id="change-email-btn">
+                                            Módosítás
+                                        </button>
+                                    </div>
+                                    <small>Ez az email cím kerül felhasználásra a bejelentkezéshez és értesítésekhez.</small>
+                                </div>
+                            </div>
+
+                            <!-- Password Settings -->
+                            <div class="form-section">
+                                <h3>Jelszó</h3>
+                                <div class="input-group">
+                                    <label for="current-password">Jelenlegi jelszó</label>
+                                    <input type="password" id="current-password" placeholder="Jelenlegi jelszó">
+                                </div>
+                                <div class="form-grid">
+                                    <div class="input-group">
+                                        <label for="new-password">Új jelszó</label>
+                                        <input type="password" id="new-password" placeholder="Új jelszó">
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="confirm-password">Új jelszó megerősítése</label>
+                                        <input type="password" id="confirm-password" placeholder="Jelszó mégegyszer">
+                                    </div>
+                                </div>
+                                <div class="password-requirements">
+                                    <h4>Jelszó követelmények:</h4>
+                                    <ul>
+                                        <li id="req-length" class="requirement">Minimum 8 karakter</li>
+                                        <li id="req-uppercase" class="requirement">Legalább 1 nagybetű</li>
+                                        <li id="req-lowercase" class="requirement">Legalább 1 kisbetű</li>
+                                        <li id="req-number" class="requirement">Legalább 1 szám</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Two-Factor Authentication -->
+                            <div class="form-section">
+                                <h3>Kétfaktoros hitelesítés</h3>
+                                <div class="security-option">
+                                    <div class="security-info">
+                                        <h4>2FA bekapcsolva</h4>
+                                        <p>A fiókod extra védelemmel rendelkezik.</p>
+                                    </div>
+                                    <button type="button" class="btn btn-danger-outline">
+                                        Kikapcsolás
+                                    </button>
+                                </div>
+                                <div class="backup-codes">
+                                    <button type="button" class="btn btn-secondary">
+                                        <i class="fas fa-download"></i>
+                                        Mentési kódok letöltése
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Account Deletion -->
+                            <div class="form-section danger-zone">
+                                <h3>Veszélyes művelet</h3>
+                                <div class="danger-content">
+                                    <h4>Fiók törlése</h4>
+                                    <p>A fiók törlése végleges és visszafordíthatatlan. Minden adat véglegesen elvész.</p>
+                                    <button type="button" class="btn btn-danger" id="delete-account-btn">
+                                        <i class="fas fa-trash"></i>
+                                        Fiók törlése
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary">Mégsem</button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i>
+                                    Mentés
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Billing Tab -->
+                    <div class="settings-panel" id="billing-panel">
+                        <div class="panel-header">
+                            <h2>Számlázás és előfizetés</h2>
+                            <p>Kezeld az előfizetésed és fizetési adatokat</p>
+                        </div>
+
+                        <div class="settings-form">
+                            <!-- Current Plan -->
+                            <div class="form-section">
+                                <h3>Jelenlegi előfizetés</h3>
+                                <div class="current-plan">
+                                    <div class="plan-info">
+                                        <div class="plan-badge premium">
+                                            <i class="fas fa-crown"></i>
+                                            PREMIUM
+                                        </div>
+                                        <h4>Premium csomag</h4>
+                                        <p class="price">1,990 Ft / hónap</p>
+                                        <p class="next-billing">Következő számlázás: 2025. szeptember 5.</p>
+                                    </div>
+                                    <div class="plan-actions">
+                                        <button type="button" class="btn btn-secondary">
+                                            Csomag módosítása
+                                        </button>
+                                        <button type="button" class="btn btn-danger-outline">
+                                            Lemondás
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Payment Method -->
+                            <div class="form-section">
+                                <h3>Fizetési mód</h3>
+                                <div class="payment-method">
+                                    <div class="card-info">
+                                        <i class="fab fa-cc-visa"></i>
+                                        <div class="card-details">
+                                            <span class="card-number">•••• •••• •••• 1234</span>
+                                            <span class="card-expiry">Lejárat: 12/26</span>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-secondary">
+                                        Módosítás
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Billing History -->
+                            <div class="form-section">
+                                <h3>Számlázási előzmények</h3>
+                                <div class="billing-history">
+                                    <div class="billing-item">
+                                        <div class="billing-info">
+                                            <span class="billing-date">2025. augusztus 5.</span>
+                                            <span class="billing-description">Premium előfizetés</span>
+                                        </div>
+                                        <div class="billing-actions">
+                                            <span class="billing-amount">1,990 Ft</span>
+                                            <button class="btn btn-link">
+                                                <i class="fas fa-download"></i>
+                                                PDF
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="billing-item">
+                                        <div class="billing-info">
+                                            <span class="billing-date">2025. július 5.</span>
+                                            <span class="billing-description">Premium előfizetés</span>
+                                        </div>
+                                        <div class="billing-actions">
+                                            <span class="billing-amount">1,990 Ft</span>
+                                            <button class="btn btn-link">
+                                                <i class="fas fa-download"></i>
+                                                PDF
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="billing-item">
+                                        <div class="billing-info">
+                                            <span class="billing-date">2025. június 5.</span>
+                                            <span class="billing-description">Premium előfizetés</span>
+                                        </div>
+                                        <div class="billing-actions">
+                                            <span class="billing-amount">1,990 Ft</span>
+                                            <button class="btn btn-link">
+                                                <i class="fas fa-download"></i>
+                                                PDF
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notifications Tab -->
+                    <div class="settings-panel" id="notifications-panel">
+                        <div class="panel-header">
+                            <h2>Értesítési beállítások</h2>
+                            <p>Állítsd be, milyen értesítéseket szeretnél kapni</p>
+                        </div>
+
+                        <form class="settings-form">
+                            <!-- Email Notifications -->
+                            <div class="form-section">
+                                <h3>Email értesítések</h3>
+                                <div class="notification-options">
+                                    <label class="notification-item">
+                                        <div class="notification-info">
+                                            <h4>Új kampányok</h4>
+                                            <p>Értesítés új, releváns kampányokról</p>
+                                        </div>
+                                        <label class="switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </label>
+                                    <label class="notification-item">
+                                        <div class="notification-info">
+                                            <h4>Kampány jóváhagyás</h4>
+                                            <p>Értesítés a kampány jelentkezések állapotáról</p>
+                                        </div>
+                                        <label class="switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </label>
+                                    <label class="notification-item">
+                                        <div class="notification-info">
+                                            <h4>Kifizetések</h4>
+                                            <p>Értesítés kifizetésekről és bevételekről</p>
+                                        </div>
+                                        <label class="switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </label>
+                                    <label class="notification-item">
+                                        <div class="notification-info">
+                                            <h4>Hetente összefoglaló</h4>
+                                            <p>Heti teljesítmény és bevétel összesítő</p>
+                                        </div>
+                                        <label class="switch">
+                                            <input type="checkbox">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Push Notifications -->
+                            <div class="form-section">
+                                <h3>Push értesítések</h3>
+                                <div class="notification-options">
+                                    <label class="notification-item">
+                                        <div class="notification-info">
+                                            <h4>Sürgős értesítések</h4>
+                                            <p>Fontos fiók és kampány információk</p>
+                                        </div>
+                                        <label class="switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </label>
+                                    <label class="notification-item">
+                                        <div class="notification-info">
+                                            <h4>Napi jelentés</h4>
+                                            <p>Napi teljesítmény összesítő</p>
+                                        </div>
+                                        <label class="switch">
+                                            <input type="checkbox">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Communication Preferences -->
+                            <div class="form-section">
+                                <h3>Kommunikációs preferenciák</h3>
+                                <div class="communication-preferences">
+                                   <div class="preference-item">
+                                       <label for="communication-frequency">Értesítési gyakoriság</label>
+                                       <select id="communication-frequency">
+                                           <option value="realtime">Valós idejű</option>
+                                           <option value="daily" selected>Napi összesítő</option>
+                                           <option value="weekly">Heti összesítő</option>
+                                           <option value="never">Soha</option>
+                                       </select>
+                                   </div>
+                                   <div class="preference-item">
+                                       <label for="preferred-time">Előnyben részesített időpont</label>
+                                       <select id="preferred-time">
+                                           <option value="morning" selected>Reggel (8:00-10:00)</option>
+                                           <option value="afternoon">Délután (14:00-16:00)</option>
+                                           <option value="evening">Este (18:00-20:00)</option>
+                                       </select>
+                                   </div>
+                               </div>
+                           </div>
+
+                           <!-- Marketing Communications -->
+                           <div class="form-section">
+                               <h3>Marketing kommunikáció</h3>
+                               <div class="notification-options">
+                                   <label class="notification-item">
+                                       <div class="notification-info">
+                                           <h4>Promóciós emailek</h4>
+                                           <p>Speciális ajánlatok és akciók</p>
+                                       </div>
+                                       <label class="switch">
+                                           <input type="checkbox">
+                                           <span class="slider"></span>
+                                       </label>
+                                   </label>
+                                   <label class="notification-item">
+                                       <div class="notification-info">
+                                           <h4>Újdonságok és frissítések</h4>
+                                           <p>Platform fejlesztések és új funkciók</p>
+                                       </div>
+                                       <label class="switch">
+                                           <input type="checkbox" checked>
+                                           <span class="slider"></span>
+                                       </label>
+                                   </label>
+                               </div>
+                           </div>
+
+                           <div class="form-actions">
+                               <button type="button" class="btn btn-secondary">Mégsem</button>
+                               <button type="submit" class="btn btn-primary">
+                                   <i class="fas fa-save"></i>
+                                   Mentés
+                               </button>
+                           </div>
+                       </form>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </main>
+
+   <script>
+       // Settings tab switching
+       document.querySelectorAll('.settings-tab').forEach(tab => {
+           tab.addEventListener('click', () => {
+               // Remove active class from all tabs and panels
+               document.querySelectorAll('.settings-tab').forEach(t => t.classList.remove('active'));
+               document.querySelectorAll('.settings-panel').forEach(p => p.classList.remove('active'));
+               
+               // Add active class to clicked tab
+               tab.classList.add('active');
+               
+               // Show corresponding panel
+               const tabName = tab.getAttribute('data-tab');
+               document.getElementById(tabName + '-panel').classList.add('active');
+           });
+       });
+
+       // Bio character counter
+       const bioTextarea = document.getElementById('bio');
+       const bioCounter = document.getElementById('bio-count');
+       
+       if (bioTextarea && bioCounter) {
+           bioTextarea.addEventListener('input', () => {
+               const count = bioTextarea.value.length;
+               bioCounter.textContent = count;
+               
+               if (count > 500) {
+                   bioCounter.style.color = '#e74c3c';
+               } else {
+                   bioCounter.style.color = '#666';
+               }
+           });
+       }
+
+       // Profile picture upload
+       document.getElementById('profile-upload').addEventListener('change', function(e) {
+           const file = e.target.files[0];
+           if (file) {
+               const reader = new FileReader();
+               reader.onload = function(e) {
+                   document.getElementById('profile-preview').src = e.target.result;
+               };
+               reader.readAsDataURL(file);
+           }
+       });
+
+       // Tag removal
+       document.querySelectorAll('.tag .fa-times').forEach(removeBtn => {
+           removeBtn.addEventListener('click', () => {
+               removeBtn.parentElement.remove();
+           });
+       });
+
+       // Connect/Disconnect social media
+       document.querySelectorAll('.connect-btn').forEach(btn => {
+           btn.addEventListener('click', () => {
+               const platform = btn.closest('.social-platform');
+               const status = platform.querySelector('.connection-status');
+               const details = platform.querySelector('.platform-details');
+               
+               // Simulate connection
+               status.textContent = 'Csatlakoztatva';
+               status.classList.remove('not-connected');
+               status.classList.add('connected');
+               
+               btn.innerHTML = 'Szétkapcsolás';
+               btn.classList.remove('btn-primary', 'connect-btn');
+               btn.classList.add('btn-danger-outline', 'disconnect-btn');
+               
+               details.style.display = 'block';
+           });
+       });
+
+       document.querySelectorAll('.disconnect-btn').forEach(btn => {
+           btn.addEventListener('click', () => {
+               const platform = btn.closest('.social-platform');
+               const status = platform.querySelector('.connection-status');
+               const details = platform.querySelector('.platform-details');
+               
+               status.textContent = 'Nincs csatlakoztatva';
+               status.classList.remove('connected');
+               status.classList.add('not-connected');
+               
+               btn.innerHTML = '<i class="fas fa-link"></i> Csatlakoztatás';
+               btn.classList.remove('btn-danger-outline', 'disconnect-btn');
+               btn.classList.add('btn-primary', 'connect-btn');
+               
+               details.style.display = 'none';
+           });
+       });
+
+       // Password validation
+       const newPasswordInput = document.getElementById('new-password');
+       if (newPasswordInput) {
+           newPasswordInput.addEventListener('input', () => {
+               const password = newPasswordInput.value;
+               
+               // Length check
+               const lengthReq = document.getElementById('req-length');
+               if (password.length >= 8) {
+                   lengthReq.classList.add('valid');
+               } else {
+                   lengthReq.classList.remove('valid');
+               }
+               
+               // Uppercase check
+               const uppercaseReq = document.getElementById('req-uppercase');
+               if (/[A-Z]/.test(password)) {
+                   uppercaseReq.classList.add('valid');
+               } else {
+                   uppercaseReq.classList.remove('valid');
+               }
+               
+               // Lowercase check
+               const lowercaseReq = document.getElementById('req-lowercase');
+               if (/[a-z]/.test(password)) {
+                   lowercaseReq.classList.add('valid');
+               } else {
+                   lowercaseReq.classList.remove('valid');
+               }
+               
+               // Number check
+               const numberReq = document.getElementById('req-number');
+               if (/[0-9]/.test(password)) {
+                   numberReq.classList.add('valid');
+               } else {
+                   numberReq.classList.remove('valid');
+               }
+           });
+       }
+
+       // Form submissions
+       document.querySelectorAll('.settings-form').forEach(form => {
+           form.addEventListener('submit', (e) => {
+               e.preventDefault();
+               
+               // Show success message
+               const submitBtn = form.querySelector('button[type="submit"]');
+               const originalText = submitBtn.innerHTML;
+               
+               submitBtn.innerHTML = '<i class="fas fa-check"></i> Mentve!';
+               submitBtn.style.backgroundColor = '#27ae60';
+               
+               setTimeout(() => {
+                   submitBtn.innerHTML = originalText;
+                   submitBtn.style.backgroundColor = '';
+               }, 2000);
+           });
+       });
+   </script>
+   <script src="./settings.js"></script>
+</body>
+</html>

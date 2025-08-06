@@ -1,0 +1,438 @@
+/* login-style.css */
+
+/*
+   A meglévő style.css-ből átvett változók, hogy a login oldal stílusa is konzisztens legyen.
+   Ezeket a változókat célszerű globális fájlban tárolni, vagy importálni.
+*/
+:root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+    --glass-blur: blur(16px);
+    
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #111111;
+    
+    --text-primary: rgba(255, 255, 255, 0.95);
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-muted: rgba(255, 255, 255, 0.5);
+    
+    --glow-primary: 0 0 30px rgba(102, 126, 234, 0.5);
+    --glow-secondary: 0 0 30px rgba(240, 147, 251, 0.5);
+    --glow-accent: 0 0 30px rgba(79, 172, 254, 0.5);
+    
+    --border-radius: 20px;
+    --transition-smooth: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* Specifikus színek a login formhoz a fő paletta alapján */
+    --social-btn-google-bg: #DB4437; /* Google piros */
+    --social-btn-facebook-bg: #4267B2; /* Facebook kék */
+    --input-bg-color: rgba(255, 255, 255, 0.05); /* Enyhén áttetsző input háttér */
+}
+
+/* Alap reset és body stílusok */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body.login-body {
+    font-family: 'Inter', 'Poppins', sans-serif;
+    background: var(--bg-primary); /* Sötét háttér a fő palettából */
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(240, 147, 251, 0.15) 0%, transparent 50%);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Login konténer (a fő doboz) */
+.login-container {
+    background: var(--glass-bg); /* Áttetsző háttér */
+    backdrop-filter: var(--glass-blur); /* Elmosás */
+    border: 1px solid var(--glass-border); /* Finom keret */
+    padding: 50px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--glass-shadow);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Cím, alcím */
+.login-header {
+    margin-bottom: 40px;
+}
+
+.login-header .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    text-decoration: none;
+    font-size: 2.5em;
+    font-weight: 800;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+}
+
+.login-header .logo i {
+    margin-right: 15px;
+    font-size: 1.2em;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.login-header h1 {
+    font-size: 2.4em;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, var(--text-primary) 0%, rgba(102, 126, 234, 0.9) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+
+.login-header p {
+    color: var(--text-secondary);
+    font-size: 1em;
+    line-height: 1.6;
+}
+
+/* Form váltó gombok */
+.form-toggle {
+    display: flex;
+    width: 100%;
+    margin-bottom: 30px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: var(--glass-blur);
+}
+
+.form-toggle button {
+    flex: 1;
+    padding: 15px 0;
+    border: none;
+    background-color: transparent;
+    color: var(--text-secondary);
+    font-size: 1.05em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    outline: none;
+}
+
+.form-toggle button.active {
+    background: var(--primary-gradient);
+    color: var(--text-primary);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.form-toggle button:not(.active):hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.form-wrapper {
+    display: none;
+    transition: opacity var(--transition-smooth) ease;
+}
+
+.form-wrapper.active {
+    display: block;
+}
+
+/* Input mezők */
+.input-group {
+    margin-bottom: 25px;
+    text-align: left;
+    position: relative;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+.input-group label i {
+    margin-right: 8px;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 16px 20px;
+    background-color: var(--input-bg-color);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius);
+    color: var(--text-primary);
+    font-size: 1em;
+    outline: none;
+    transition: var(--transition-smooth);
+}
+
+.input-group input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.8;
+}
+
+.input-group input:focus {
+    border-color: rgba(102, 126, 234, 0.5);
+    box-shadow: 0 0 15px rgba(102, 126, 234, 0.4);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Opciók és linkek */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    font-size: 0.9em;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.checkbox-container {
+    color: var(--text-secondary);
+}
+
+.forgot-password, .link {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+    position: relative;
+    padding-bottom: 2px;
+}
+
+.forgot-password::after, .link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background: var(--primary-gradient);
+    transition: var(--transition-bounce);
+    transform: translateX(-50%);
+}
+
+.forgot-password:hover::after, .link:hover::after {
+    width: 100%;
+}
+
+/* Gombok */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 18px 36px;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: var(--glass-blur);
+    transition: var(--transition-smooth);
+    z-index: 1;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: var(--transition-smooth);
+    z-index: -1;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn-primary {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: var(--glass-blur);
+}
+
+.btn-primary:hover {
+    background: var(--primary-gradient);
+    box-shadow: var(--glow-primary);
+    transform: translateY(-4px) scale(1.02);
+}
+
+.btn-full-width {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+}
+
+/* Elválasztó vonal */
+.social-login-divider {
+    margin: 40px 0;
+    color: var(--text-muted);
+    position: relative;
+    font-size: 0.9em;
+}
+
+.social-login-divider::before,
+.social-login-divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 38%;
+    height: 1px;
+    background-color: var(--glass-border);
+}
+
+.social-login-divider::before { left: 0; }
+.social-login-divider::after { right: 0; }
+
+/* Közösségi média gombok */
+.social-login {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-social {
+    flex: 1;
+    min-width: 150px;
+    padding: 15px 20px;
+    border-radius: var(--border-radius);
+    transition: var(--transition-smooth);
+    color: var(--text-primary);
+    box-shadow: var(--glass-shadow);
+}
+
+.btn-social i {
+    margin-right: 10px;
+    font-size: 1.1em;
+    color: var(--text-primary);
+}
+
+.btn-google {
+    background-color: var(--social-btn-google-bg);
+    border: 1px solid var(--social-btn-google-bg);
+}
+
+.btn-google:hover {
+    background-color: #C23321;
+    transform: translateY(-2px);
+}
+
+.btn-facebook {
+    background-color: var(--social-btn-facebook-bg);
+    border: 1px solid var(--social-btn-facebook-bg);
+}
+
+.btn-facebook:hover {
+    background-color: #365899;
+    transform: translateY(-2px);
+}
+
+/* Reszponzivitás */
+@media (max-width: 768px) {
+    .login-container {
+        padding: 40px;
+        max-width: 95%;
+    }
+    
+    .login-header h1 {
+        font-size: 2em;
+    }
+
+    .form-options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .social-login {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-social {
+        min-width: unset;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        padding: 30px;
+    }
+    
+    .login-header .logo {
+        font-size: 2em;
+    }
+
+    .login-header h1 {
+        font-size: 1.8em;
+    }
+
+    .input-group input {
+        padding: 12px 16px;
+        font-size: 0.95em;
+    }
+
+    .btn {
+        padding: 14px 24px;
+        font-size: 1em;
+    }
+}
