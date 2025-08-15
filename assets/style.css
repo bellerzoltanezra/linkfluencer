@@ -979,3 +979,303 @@ h2::after {
     box-shadow: var(--glow-primary);
     transform: translateY(-2px);
 }
+
+/* Mobilra optimalizált CSS kiegészítések - add hozzá a meglévő CSS-hez */
+
+/* Mobil navigáció */
+@media (max-width: 768px) {
+    .hamburger-menu {
+        display: flex;
+    }
+
+    .main-nav .nav-list {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        transition: var(--transition-smooth);
+        z-index: 1000;
+    }
+
+    .main-nav .nav-list.active {
+        right: 0;
+    }
+
+    .main-nav .nav-list li {
+        opacity: 0;
+        transform: translateX(50px);
+        transition: var(--transition-smooth);
+    }
+
+    .main-nav .nav-list.active li {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .main-nav .nav-list.active li:nth-child(1) { transition-delay: 0.1s; }
+    .main-nav .nav-list.active li:nth-child(2) { transition-delay: 0.2s; }
+    .main-nav .nav-list.active li:nth-child(3) { transition-delay: 0.3s; }
+    .main-nav .nav-list.active li:nth-child(4) { transition-delay: 0.4s; }
+    .main-nav .nav-list.active li:nth-child(5) { transition-delay: 0.5s; }
+}
+
+/* Hero szekció mobil */
+@media (max-width: 768px) {
+    .hero-section .container {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .hero-section {
+        padding: 120px 0 80px 0;
+        min-height: auto;
+    }
+
+    .hero-section h1 {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        margin-bottom: 30px;
+    }
+
+    .hero-section p {
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .btn-large {
+        padding: 20px 40px;
+        font-size: 1.1rem;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .hero-image {
+        max-width: 100%;
+        margin-top: 20px;
+    }
+}
+
+/* Általános mobil beállítások */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    section {
+        padding: 80px 0;
+    }
+
+    h2 {
+        font-size: clamp(2rem, 6vw, 3rem);
+        margin-bottom: 50px;
+    }
+
+    .btn {
+        padding: 16px 30px;
+        font-size: 1rem;
+    }
+}
+
+/* Feature grid mobil */
+@media (max-width: 768px) {
+    .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .feature-item {
+        padding: 40px 30px;
+    }
+
+    .feature-item .fas {
+        font-size: 3.5rem;
+        margin-bottom: 25px;
+    }
+
+    .feature-item h3 {
+        font-size: 1.7rem;
+        margin-bottom: 15px;
+    }
+
+    .feature-item p {
+        font-size: 1rem;
+    }
+}
+
+/* Flow steps mobil */
+@media (max-width: 768px) {
+    .flow-steps {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .flow-arrow {
+        transform: rotate(90deg);
+        margin: 10px 0;
+        font-size: 2rem;
+    }
+
+    .flow-step {
+        min-width: auto;
+        max-width: 100%;
+        padding: 30px 25px;
+    }
+
+    .step-icon {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 20px;
+    }
+
+    .step-icon .fas {
+        font-size: 2.5rem;
+    }
+
+    .flow-step h3 {
+        font-size: 1.4rem;
+        margin-bottom: 12px;
+    }
+
+    .flow-step p {
+        font-size: 0.95rem;
+    }
+}
+
+/* Testimonials mobil */
+@media (max-width: 768px) {
+    .testimonial-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .testimonial-item {
+        padding: 30px 25px;
+    }
+
+    .testimonial-item p {
+        font-size: 1.1rem;
+        margin-bottom: 25px;
+    }
+
+    .testimonial-author img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .testimonial-author h4 {
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+    }
+
+    .testimonial-author span {
+        font-size: 0.9rem;
+    }
+}
+
+/* CTA szekció mobil */
+@media (max-width: 768px) {
+    .cta-section {
+        padding: 80px 0;
+    }
+
+    .cta-section h2 {
+        font-size: clamp(2rem, 6vw, 2.8rem);
+        margin-bottom: 25px;
+    }
+
+    .cta-section p {
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+    }
+
+    .cta-actions {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+}
+
+/* Footer mobil */
+@media (max-width: 768px) {
+    .main-footer {
+        padding: 80px 0 40px 0;
+    }
+
+    .footer-columns {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        margin-bottom: 40px;
+    }
+
+    .footer-col {
+        padding: 30px 25px;
+    }
+
+    .footer-col h4 {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+
+    .footer-col ul li {
+        margin-bottom: 10px;
+    }
+
+    .footer-col ul li a {
+        font-size: 0.95rem;
+    }
+
+    .footer-bottom p {
+        padding: 15px 25px;
+        font-size: 0.85rem;
+        margin: 0 10px;
+    }
+}
+
+/* További kis képernyő optimalizáció */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .hero-section h1 {
+        font-size: clamp(2rem, 8vw, 3rem);
+    }
+
+    .hero-section p {
+        font-size: 1.1rem;
+    }
+
+    .btn-large {
+        padding: 18px 30px;
+        font-size: 1rem;
+    }
+
+    .feature-item {
+        padding: 30px 20px;
+    }
+
+    .flow-step {
+        padding: 25px 20px;
+    }
+
+    .testimonial-item {
+        padding: 25px 20px;
+    }
+
+    .footer-col {
+        padding: 25px 20px;
+    }
+}

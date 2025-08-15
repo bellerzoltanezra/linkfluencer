@@ -59,3 +59,51 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// Mobil menü JavaScript - add hozzá a script.js fájlodhoz
+
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const navList = document.querySelector('.nav-list');
+    const navLinks = document.querySelectorAll('.nav-list a');
+
+    // Hamburger menü toggle
+    hamburgerMenu.addEventListener('click', function() {
+        hamburgerMenu.classList.toggle('active');
+        navList.classList.toggle('active');
+        
+        // Body scroll letiltása amikor a menü nyitva van
+        if (navList.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Menü bezárása link kattintáskor
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            hamburgerMenu.classList.remove('active');
+            navList.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
+
+    // Menü bezárása ESC billentyűre
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && navList.classList.contains('active')) {
+            hamburgerMenu.classList.remove('active');
+            navList.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Menü bezárása a háttérre kattintáskor
+    navList.addEventListener('click', function(e) {
+        if (e.target === navList) {
+            hamburgerMenu.classList.remove('active');
+            navList.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+});
